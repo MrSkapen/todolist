@@ -1,0 +1,129 @@
+<% include ./partials/header %>
+<style>
+  td, th {
+      width: 33%;
+      text-align: center;
+      padding: 8px;
+  }   
+  th:nth-child(2), tr td:nth-child(2) {
+      background: rgb(140, 202, 252);
+  }         
+  .scroll {      
+      border: 0; 
+      border-collapse: collapse; 
+  } 
+  .scroll tr { 
+      display: flex; 
+  } 
+  .scroll td { 
+      padding: 3px; 
+      flex: 1 auto; 
+      width: 1px; 
+      word-wrap: break; 
+  } 
+  .scroll thead tr:after { 
+      content: ''; 
+      overflow-y: scroll; 
+      visibility: hidden; 
+      height: 0; 
+  } 
+  .scroll thead th { 
+      flex: 1 auto; 
+      display: block; 
+  } 
+  .scroll tbody { 
+      display: block; 
+      overflow-y: auto; 
+      height: 200px; 
+  }
+</style>
+<div class="fw-bold fs-4 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+   <%=project %>
+</div>
+<div class="tab-content shadow-lg" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="row">
+          <div class="col">
+            <div>
+              <% if(tasks!=null) { %>
+                <table class="scroll" width="100%"> 
+                  <thead>
+                    <tr>
+                        <th>Nierozpoczęte</th>
+                    </tr>
+                </thead> 
+                  <% tasks.forEach(function(item){ %>
+                    <%if(item.status == "Nierozpoczęte"){%>
+                  <tr>
+                    <% var x = new Date() %>
+                    <% var y = new Date(item.endDate) %>
+                    <% if( x < y ){ %>
+                      <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
+                    <%}else{%>
+                      <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
+                    <%}%>
+                      
+                  </tr>
+                  <%}%>
+                  <% }) %>
+                  </table>
+                  <% } %>
+            </div>
+          </div>
+            <div class="col shadow-lg" style="background-color: #dce8f5;">
+              <div>
+                <% if(tasks!=null) { %>
+                  <table class="scroll" width="100%"> 
+                    <thead>
+                      <tr>
+                          <th>W trakcie</th>
+                      </tr>
+                  </thead> 
+                    
+                    <% tasks.forEach(function(item){ %>
+                      <%if(item.status == "W trakcie"){%>
+                        <tr>
+                          <% var x = new Date() %>
+                          <% var y = new Date(item.endDate) %>
+                          <% if( x < y ){ %>
+                            <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
+                          <%}else{%>
+                            <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
+                          <%}%>
+                            
+                        </tr>
+                    <%}%>
+                    <% }) %>
+                    </table>
+                    <% } %>
+              </div>
+            </div>
+              <div class="col">
+                <div>
+                  <% if(tasks!=null) { %>
+                    <table class="scroll" width="100%"> 
+                      <thead>
+                        <tr>
+                            <th>Zakończone</th>
+                        </tr>
+                    </thead> 
+                      
+                      <% tasks.forEach(function(item){ %>
+                        <%if(item.status == "Zakończone"){%>
+                      <tr>
+                          <td id=""><%= item.name%></td>
+                      </tr>
+                      <%}%>
+                      <% }) %>
+                      </table>
+                      <% } %>
+                </div>
+              </div>
+        </div>
+        <a href="/dashboard">
+          <button type="submit" class="btn btn-primary" style = "float: left; width: 200px; margin-right: 25px;">
+            Wróć do listy projektów
+          </button></a>
+        <a href="/add_task/<%=project %>"><button type="submit" class="btn btn-primary" style = " float: right; width: 200px; margin-left: 25px;">Dodaj nowe zadanie</button></a>
+    </div>
+</div>

@@ -1,0 +1,269 @@
+
+<% include ./partials/header %>
+<div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+  Panel Główny
+</div>  
+<script>
+  function sortTable(number) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("myTable");
+    console.log(table);
+    switching = true;
+    while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[number];
+      y = rows[i + 1].getElementsByTagName("TD")[number];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+      shouldSwitch = true;
+      break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+    }
+  }
+</script>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-home" aria-selected="true">Projekty</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Użytkownicy</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-inactive_tasks" role="tab" aria-controls="pills-inactive_tasks" aria-selected="false">Nierozpoczęte zadania</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-active_tasks" role="tab" aria-controls="pills-active_tasks" aria-selected="false">Aktywne zadania</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-end_taskts" role="tab" aria-controls="pills-end_taskts" aria-selected="false">Ukończone zadania</a>
+      </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div style = "max-height: 500px;" class = "overflow-auto shadow-lg">
+        <div>
+            <% if(projects!=null) { %>
+              
+              <table class="table table-striped" id="myTable" style=" text-align: center;">
+                <thead class = "sticky-top">
+									<tr class = "text-right table-striped ">
+										<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th><!--LiczbaZadań Jeżeli możliwa xd-->
+										<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Koordynator</th>
+										<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Data Rozpoczęcia</th>
+										<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Data Zakończenia</th>
+									</tr>
+                </thead>
+                <tbody class = "text-secondary">
+                  <% var i=0 %>
+                  <% projects.forEach(function(item){ %>
+                    <% if(i%2==0) { %>
+                      <tr >
+                    <% }else{ %>
+                      <tr>
+                    <% } %>
+                    <td><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/projects/<%= item.name%>"><b><%= item.name%></b></a><% i++ %></td>
+                    <td><%= item.coordinator%></td>
+                    <td><%=item.startDate %></td>
+                    <% var x = new Date() %>
+                    <% var y = new Date(item.endDate) %>
+                    <% if( x < y ){ %>
+                    <td><%= item.endDate%></td>
+                    <%}else{%>
+                      <td style="color: rgb(255, 0, 0);"><%= item.endDate %></td>
+                    <%}%>
+                    
+                </tr>
+                <% }) %>
+              </tbody>
+                </table>
+        </div>
+                <% } %>
+        </div>
+        <br><a href="/add_project" class="btn btn-primary" style="margin-left: 90%;">Dodaj Projekt</a>
+    </div>
+    <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+      <div style = "max-height: 500px;" class = "overflow-auto ">
+        
+        <% if(tasks!=null) { %>
+          <table class="table" style=" text-align: center;">
+            <thead class = "">
+              <tr class = "">
+                  <th scope="col" class = "sticky-top bg-light">Imie i nazwisko</th>
+									<th scope="col" class = "sticky-top bg-light">Ilość wszystkich zadań</th>
+									<th scope="col" class = "sticky-top bg-light">Ilość rozpoczętych zadań</th>
+									<th scope="col" class = "sticky-top bg-light">Ilość zakończonych zadań</th>
+              </tr>
+            </thead>
+            <tbody class = "text-secondary">
+              <% var i=0 %>
+            <% users.forEach(function(item){ %>
+              <% if(i%2==0) { %>
+                <tr style = "background-color: #DCDCDC">
+              <% }else{ %>
+                <tr>
+              <% } %>
+             
+                <td><%= item.name%><% i++ %></td>
+                <% var x=0 %>
+                <% tasks.forEach(function(u){ %>
+                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+                    <%x++%>
+                  <%}%>
+                <% }) %>
+                <td><%= x %></td>
+                <% var x=0 %>
+                <% tasks.forEach(function(u){ %>
+                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+                    <% if(new String(u.status).valueOf() == new String("W trakcie").valueOf()){%>
+                      <%x++%>
+                    <%}%>
+                  <%}%>
+                <% }) %>
+                <td><%= x %></td>
+                <% var x=0 %>
+                <% tasks.forEach(function(u){ %>
+                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+                    <% if(new String(u.status).valueOf() == new String("Zakończone").valueOf()){%>
+                      <%x++%>
+                    <%}%>
+                  <%}%>
+                <% }) %>
+                <td><%= x %></td>
+              
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        
+            <% } %>
+    </div>
+    <br><a href="/add_user" class="btn btn-primary" style="margin-left: 90%;">Dodaj Użytkownika</a>
+  </div>
+    <div class="tab-pane fade" id="pills-inactive_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
+      <div style = "max-height: 500px;" class = "overflow-auto ">
+        <div>
+      
+        <% if(tasks!=null) { %>
+          <table class="table" style=" text-align: center;">
+            <thead class = "">
+              <tr class = "">
+                  <th scope="col" class = "sticky-top bg-light">Nazwa</th>
+									<th scope="col" class = "sticky-top bg-light">Projekt</th>
+									<th scope="col" class = "sticky-top bg-light">Użytkownik</th>
+									<th scope="col" class = "sticky-top bg-light">Priorytet</th>
+									<th scope="col" class = "sticky-top bg-light">Data Rozpoczęcia</th>
+									<th scope="col" class = "sticky-top bg-light">Data Zakończenia</th>
+              </tr>
+            </thead>
+            <tbody class = "text-secondary">
+              <% var i=0 %>
+            <% tasks.forEach(function(item){ %>
+              <% if(i%2==0) { %>
+                <tr style = "background-color: #DCDCDC">
+              <% }else{ %>
+                <tr>
+              <% } %>
+              <% if(item.status=="Nierozpoczęte"){ %>
+                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
+                <td><%= item.project%></td>
+                <td><%= item.worker%></td>
+                <td><%= item.priority%></td>
+                <td><%=item.startDate %></td>
+                <td><%=item.endDate %></td>
+                <% } %>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        </div>
+            <% } %>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="pills-active_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
+      <div style = "max-height: 500px;" class = "overflow-auto ">
+        <div>
+      
+        <% if(tasks!=null) { %>
+          <table class="table" style=" text-align: center;">
+            <thead class = "sticky-top">
+              <tr class = "">
+                  <th scope="col" class = "sticky-top bg-light">Nazwa</th>
+									<th scope="col" class = "sticky-top bg-light">Projekt</th>
+									<th scope="col" class = "sticky-top bg-light">Użytkownik</th>
+									<th scope="col" class = "sticky-top bg-light">Priorytet</th>
+									<th scope="col" class = "sticky-top bg-light">Data Rozpoczęcia</th>
+									<th scope="col" class = "sticky-top bg-light">Data Zakończenia</th>
+              </tr>
+            </thead>
+            <tbody class = "text-secondary">
+              <% var i=0 %>
+            <% tasks.forEach(function(item){ %>
+              <% if(i%2==0) { %>
+                <tr style = "background-color: #DCDCDC">
+              <% }else{ %>
+                <tr>
+              <% } %>
+              <% if(item.status=='W trakcie' ){ %>
+                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
+                <td><%= item.project%></td>
+                <td><%= item.worker%></td>
+                <td><%= item.priority%></td>
+                <td><%=item.startDate %></td>
+                <td><%=item.endDate %></td>
+                <% } %>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        </div>
+            <% } %>
+    </div>
+    </div>
+    <div class="tab-pane fade" id="pills-end_taskts" role="tabpanel" aria-labelledby="pills-end_taskts-tab">
+      <div style = "max-height: 500px;" class = "overflow-auto ">
+        <div>
+      
+        <% if(tasks!=null) { %>
+          <table class="table" style=" text-align: center;">
+            <thead class = "sticky-top">
+              <tr class = "">
+                  <th scope="col" class = "sticky-top bg-light">Nazwa</th>
+									<th scope="col" class = "sticky-top bg-light">Projekt</th>
+									<th scope="col" class = "sticky-top bg-light">Użytkownik</th>
+									<th scope="col" class = "sticky-top bg-light">Priorytet</th>
+									<th scope="col" class = "sticky-top bg-light">Data Rozpoczęcia</th>
+									<th scope="col" class = "sticky-top bg-light">Data Zakończenia</th>
+              </tr>
+            </thead>
+            <tbody class = "text-secondary">
+              <% var i=0 %>
+            <% tasks.forEach(function(item){ %>
+              <% if(i%2==0) { %>
+                <tr style = "background-color: #DCDCDC">
+              <% }else{ %>
+                <tr>
+              <% } %>
+              <% if(item.status=='Zakończone'){ %>
+                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
+                <td><%= item.project%></td>
+                <td><%= item.worker%></td>
+                <td><%= item.priority%></td>
+                <td><%=item.startDate %></td>
+                <td><%=item.endDate %></td>
+                <% } %>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        </div>
+            <% } %>
+    </div>
+    </div>
+</div>
