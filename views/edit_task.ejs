@@ -12,15 +12,10 @@
     <div class = "align-items-center">
 			<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
 				<div>
-					<b>Projekt: </b> Zdanie Interfejsów
+					<b>Projekt: </b> <%=task.project%>
 				</div>
 			</div>
-	
-			<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-4 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
-				<div>
-					<b>Zadanie: </b> Zrobienie Backendu
-				</div>
-			</div>
+
 		</div>
 
       <form class = " fs-4 fw-bold text-primary" action="/edit_task/<%=task._id%>" method="POST">
