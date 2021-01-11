@@ -1,14 +1,18 @@
-<div class="container">
-  <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="../../../images/Logo.svg" alt="" width="200" height="200">
-    
-    <h2>Zaloguj się</h2>
-  </div>
+<img class="d-block mx-auto mb-4" src="../../../images/Logo.svg" alt="" width="150" height="150">
+					<div class = "row justify-content-center">
+						<div class = "col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4 text-center text-primary text-white bg-primary fs-1 fw-bold rounded-pill">
+							Zaloguj Się
+						</div>
+					</div>
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4">
-      <% include ./partials/messages %>
-      <form action="/users/login" method="POST">
-        <label for="email">Adres e-mail</label>
+      <div class = "card card-body">
+        <% include ./partials/messages %>
+
+      <!--Dane logowania START-->
+      <form class = "text-primary" action="/users/login" method="POST">
+        <label class ="fs-3 fw-bold" for="email">Adres e-mail</label>
         <input
           type="email"
           id="email"
@@ -16,7 +20,7 @@
           class="form-control"
           placeholder="Adres Email"
         />
-        <label for="password">Hasło</label>
+        <label class = "fs-3 fw-bold" for="password">Hasło</label>
         <input
           type="password"
           id="password"
@@ -24,12 +28,26 @@
           class="form-control"
           placeholder="Hasło"
         />
+      <!--Dane logowania KONIEC-->
+
+      <!--Akcje logowania START-->
       <a href="#">Zapomniałem hasła</a>
       <hr class="mb-4">
-      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <div class="text-center">
+          <button type="submit" class="btn btn-primary  fs-3 fw-bold">Zaloguj</button>
+      </div> 
     </form>
-    <p class="lead mt-4">
-      No Account? <a href="/users/register">Register</a>
+    <!--Akcje logowania KONIEC-->
+
+    <!--Rejestracja START-->
+    <p class="lead mt-4 text-center">
+      Nie masz konta? 
+      <a href="/users/register">Zarejestruj</a>
     </p>
+  <!--Rejestracja KONIEC-->
+
+      </div>
+      
   </div>
+</div>    
 </div>

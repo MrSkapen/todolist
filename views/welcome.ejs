@@ -1,17 +1,28 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body text-center">
-      <h1><i class="fab fa-node-js fa-3x"></i></h1>
-      <p>Create an account or login</p>
-      <a href="/users/register" class="btn btn-primary btn-block mb-2"
-        >Register</a
-      >
-      <a href="/users/login" class="btn btn-secondary btn-block">Login</a>
-    </div>
-    <div class="card card-body text-center">
-      <h1><i class="fab fa-node-js fa-3x"></i></h1>
-      <p> login</p>
-      <a href="/loginUser" class="btn btn-secondary btn-block">Login</a>
-    </div>
-  </div>
+<div class="container">
+  <img class="d-block mx-auto mb-4" src="../../images/Logo.svg" alt="" width="150" height="150">
+  <h4 class="text-center">ToDoList Enterprise</h4>  
+    <div class="row mt-5">
+
+      <!--Logowanie użytkownika START-->
+        <div class="col-md-4 m-auto">
+          <div class="card card-body align-items-center d-flex justify-content-center" style = "height: 200px;">
+            <h1><i class="fab fa-node-js fa-3x"></i></h1>
+            <p> Zaloguj się do konta pracownika</p>
+            <a href="/loginUser" class="btn btn-primary btn-block" style = "width:100%;">Zaloguj</a>
+          </div>
+        </div>
+        <!--Logowanie użytkownika KONIEC-->
+
+        <!--Logowanie administratora START-->
+        <div class="col-md-4 m-auto">
+            <div class="card card-body text-center" style = "height: 200px;">
+                <h1><i class="fab fa-node-js fa-3x"></i></h1>
+                <p>Załóż nowe konto jako koordynator lub zaloguj się </p>
+                <a href="/users/register" class="btn btn-primary btn-block mb-2"
+                  >Zarejestruj</a>
+                <a href="/users/login" class="btn btn-primary btn-block">Zaloguj</a>
+              </div>
+        </div>               
+        <!--Logowanie administratora KONIEC-->
+      </div>
 </div>
