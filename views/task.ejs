@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../../images/pracownik.css">
   <div class="d-flex align-items-center"> 
     <div class="me-auto">
         <a href="/dashboardUser">
@@ -14,7 +15,7 @@
 </div> 
 
 
-  <div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+  <div class="fw-bold fs-1 container p-3 my-3 bg-warning text-white text-center rounded-pill shadow-lg">
     Szczegóły zadania
   </div>
   <div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
@@ -64,9 +65,9 @@
             <b><%=tasks[0].priority %></b>
           </div>
           
-      <button type="submit" id="click" class="btn btn-primary" style = "float: right; width: 200px; margin-right: 25%;">Zapisz zmianę statusu</button>
+      <button type="submit" id="click" class="btn btn-warning" style = "color: white; float: right; width: 200px; margin-top: 25px">Zapisz zmianę statusu</button>
       </form>
-      <a href="/dashboardUser/<%= tasks[0].worker %>"><button  class="btn btn-primary" style = "float: left; width: 200px; margin-left: 25%;">Wróć do projektu</button></a>
+      <a href="/dashboardUser/<%= tasks[0].worker %>"><button  class="btn btn-warning" style = "color: white; float: left; width: 200px; margin-top: 25px;">Wróć do projektu</button></a>
      
 
     </div>

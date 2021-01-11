@@ -51,7 +51,7 @@ router.post('/send', async function (req, res){
     if (err) {
       console.log(err);
     } else {
-      res.render("dashboard", { user: req.user, projects: projectsDetails, users: usersDetails, tasks: tasksDetails })
+      res.redirect('/dashboard');
     }
   })
  
