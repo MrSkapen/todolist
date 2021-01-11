@@ -21,6 +21,10 @@ const TaskSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  coordinator: {
+    type: String,
+    required: true
+  },
   comment: {
     type: String,
     required: false

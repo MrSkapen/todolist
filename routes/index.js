@@ -87,7 +87,7 @@ router.post('/add_user', ensureAuthenticated, async (req, res) => {
 
 router.post('/add_task/:id', ensureAuthenticated, async function (req, res){
  
-    var task = new Tasks({ name: req.body.name, project: req.params.id, worker: req.body.worker, comment: req.body.comment, status: "Nierozpoczęte", startDate: req.body.startdate, endDate: req.body.enddate, priority: req.body.priority });
+    var task = new Tasks({ name: req.body.name, project: req.params.id, worker: req.body.worker, coordinator: req.user.name, comment: req.body.comment, status: "Nierozpoczęte", startDate: req.body.startdate, endDate: req.body.enddate, priority: req.body.priority });
     var savedMessage = await task.save();
     var usersDetails;
     var tasksDetails;

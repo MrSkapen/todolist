@@ -74,25 +74,22 @@
 									</tr>
                 </thead>
                 <tbody class = "text-secondary">
-                  <% var i=0 %>
+                  
                   <% projects.forEach(function(item){ %>
-                    <% if(i%2==0) { %>
-                      <tr >
-                    <% }else{ %>
-                      <tr>
-                    <% } %>
-                    <td><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/projects/<%= item.name%>"><b><%= item.name%></b></a><% i++ %></td>
-                    <td><%= item.coordinator%></td>
-                    <td><%=item.startDate %></td>
-                    <% var x = new Date() %>
-                    <% var y = new Date(item.endDate) %>
-                    <% if( x < y ){ %>
-                    <td><%= item.endDate%></td>
-                    <%}else{%>
-                      <td style="color: rgb(255, 0, 0);"><%= item.endDate %></td>
+                    <% if( item.coordinator == user.name){ %>
+                    <tr>
+                      <td><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/projects/<%= item.name%>"><b><%= item.name%></b></a></td>
+                      <td><%= item.coordinator%></td>
+                      <td><%=item.startDate %></td>
+                      <% var x = new Date() %>
+                      <% var y = new Date(item.endDate) %>
+                      <% if( x < y ){ %>
+                      <td><%= item.endDate%></td>
+                      <%}else{%>
+                        <td style="color: rgb(255, 0, 0);"><%= item.endDate %></td>
+                      <%}%>
+                    </tr>
                     <%}%>
-                    
-                </tr>
                 <% }) %>
               </tbody>
                 </table>
@@ -176,13 +173,10 @@
               </tr>
             </thead>
             <tbody class = "text-secondary">
-              <% var i=0 %>
+              
             <% tasks.forEach(function(item){ %>
-              <% if(i%2==0) { %>
+              <% if( item.coordinator == user.name){ %>
                 <tr>
-              <% }else{ %>
-                <tr>
-              <% } %>
               <% if(item.status=="Nierozpoczęte"){ %>
                 <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
                 <td><%= item.project%></td>
@@ -192,6 +186,7 @@
                 <td><%=item.endDate %></td>
                 <% } %>
             </tr>
+              <% } %>
             <% }) %>
           </tbody>
         </table>
@@ -218,11 +213,8 @@
             <tbody class = "text-secondary">
               <% var i=0 %>
             <% tasks.forEach(function(item){ %>
-              <% if(i%2==0) { %>
+              <% if( item.coordinator == user.name){ %>
                 <tr >
-              <% }else{ %>
-                <tr>
-              <% } %>
               <% if(item.status=='W trakcie' ){ %>
                 <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
                 <td><%= item.project%></td>
@@ -232,6 +224,7 @@
                 <td><%=item.endDate %></td>
                 <% } %>
             </tr>
+            <% } %>
             <% }) %>
           </tbody>
         </table>
