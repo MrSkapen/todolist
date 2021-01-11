@@ -9,12 +9,21 @@
   </ol>
 </nav>
   <div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
-    <div style = "width: fit-content;" class="ms-0 d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
-      <div>
-        <%= task.name %>
-      </div>
-    </div>
-      <form class = " fs-4 fw-bold" action="/edit_task/<%=task._id%>" method="POST">
+    <div class = "align-items-center">
+			<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
+				<div>
+					<b>Projekt: </b> Zdanie Interfejsów
+				</div>
+			</div>
+	
+			<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-4 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
+				<div>
+					<b>Zadanie: </b> Zrobienie Backendu
+				</div>
+			</div>
+		</div>
+
+      <form class = " fs-4 fw-bold text-primary" action="/edit_task/<%=task._id%>" method="POST">
         <div class="form-group">
           <label for="name">Nazwa</label>
           <input
@@ -36,7 +45,7 @@
           />
         </div>
         <div class = "d-flex mt-3 justify-content-between">
-        <div class="form-group" style = "width: 50%;">
+        <div class="form-group" style = "width: 45%;">
             <label for="worker">Pracownik:</label>
             <select class = "form-select" name="worker" id="worker">
                
@@ -48,16 +57,16 @@
                
               </select>
         </div>
-        <div class="form-group" style = "width: 40%;">
+        <div class="form-group" style = "width: 45%;">
           <label for="name">Priorytet</label>
           <select class = "form-select" name="priority" id="priority">
-              <option value="high">wysoki</option>
-              <option value="low">niski</option>
+              <option value="Wysoki">Wysoki</option>
+              <option value="Zwykły">Zwykły</option>
         </select>
         </div>
       </div>
         <div class = "d-flex mt-3 justify-content-between">
-        <div class="form-group" style = "width: 30%; margin-left: 40px;">
+        <div class="form-group" style = "width:45%">
           <label for="start-date">Data rozpoczęcia:</label>
           <input
             type="date"
@@ -67,7 +76,7 @@
             value="<%=task.startDate %>"
           />
         </div>
-        <div class="form-group" style = "width: 30%; margin-right: 40px;">
+        <div class="form-group" style = "width:45%">
           <label for="end-date">Data zakonczenia:</label>
           <input
             type="date"
@@ -83,7 +92,7 @@
           <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Zatwierdź zmiany</button>
         </form>
    
-      <a href="/dashboard"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Wróć do projektu</button></a>
+      <a href="/dashboard"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Powrót</button></a>
      </div>
     </div>
   </div>
