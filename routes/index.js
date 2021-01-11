@@ -77,7 +77,7 @@ router.post('/add_user', ensureAuthenticated, async (req, res) => {
         projectsDetails = allDetails;
       }
     });
-    res.render("dashboard", { user: req.user, projects: projectsDetails, users: usersDetails, tasks: tasksDetails });
+    res.redirect('/dashboard');
   }
   catch (error) {
     res.sendStatus(500);
