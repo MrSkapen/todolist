@@ -86,8 +86,21 @@
         </div>
           <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Zatwierdź zmiany</button>
         </form>
-   
-      <a href="/dashboard"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Powrót</button></a>
-     </div>
+      <a href="/dashboard"><button type="submit" class="btn btn-primary" style = "width: 200px;">Powrót</button></a>
+      <button class="btn btn-primary" style=" width: 200px; margin-left: 10%;"onclick="myFunction()">Usuń zadanie</button>
+     
+    </div>
     </div>
   </div>
+
+  <script>
+    function myFunction() {
+      var txt;
+      var r = confirm("Czy na pewno chcesz usunąć zadanie?");
+      if (r == true) {
+        window.open('/delete_task/<%=task._id%>');
+
+      } else {}
+      document.getElementById("demo").innerHTML = txt;
+    }
+  </script>

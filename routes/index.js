@@ -32,6 +32,23 @@ res.render('add_project', { user: req.user}))
 router.get('/loginUser', (req,res) =>
 res.render('loginUser', { user: req.user}))
 
+router.get('/delete_task/:id', ensureAuthenticated, async function (req, res){
+Tasks.deleteOne({_id: req.params.id}, function (err, TasksDetails) {
+  console.log(TasksDetails);
+  res.redirect('/dashboard')
+});
+})
+
+router.get('/delete_project/:id', ensureAuthenticated, async function (req, res){
+  await Tasks.deleteMany({project: req.params.id}, function (err, TasksDetails) {
+    console.log(TasksDetails);
+    Project.deleteOne({name: req.params.id}, function(err, Details){
+      console.log(Details);
+      res.redirect('/dashboard')
+    });
+  });
+  })
+
 router.get('/add_user',ensureAuthenticated, (req,res) =>
 res.render('add_user', { user: req.user}))
 
