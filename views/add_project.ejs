@@ -9,7 +9,7 @@
   </ol>
 </nav>
 <div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto" >
-  <form class = "text-primary fs-4 fw-bold" action="/send" method="post" id="contactform">
+  <form class = "text-primary fs-4 fw-bold" onsubmit="return validateForm()" action="/send" method="post" id="contactform">
         <div class="form-group">
           <label for="name">Nazwa</label>
           <input
@@ -50,3 +50,15 @@
   </div>
 </div>
   
+<script>
+  
+  function  validateForm(){
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+    if(startDate>endDate){
+      alert("Sprawdź poprawność daty rozpoczęcia i zakończenia");
+      return false;
+        }
+   
+  }
+</script>

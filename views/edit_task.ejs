@@ -18,7 +18,7 @@
 
 		</div>
 
-      <form class = " fs-4 fw-bold text-primary" action="/edit_task/<%=task._id%>" method="POST">
+      <form class = " fs-4 fw-bold text-primary" onsubmit="return validateForm()" action="/edit_task/<%=task._id%>" method="POST">
         <div class="form-group">
           <label for="name">Nazwa</label>
           <input
@@ -69,6 +69,7 @@
             name="startdate"
             class="form-control"
             value="<%=task.startDate %>"
+            onclick="validationData()"
           />
         </div>
         <div class="form-group" style = "width:45%">
@@ -79,15 +80,16 @@
             name="enddate"
             class="form-control"
             value="<%=task.endDate %>"
+            onclick="validationData()"
           />
         </div>
         </div>
         <div style="margin-top: 20px;">
         </div>
-          <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Zatwierdź zmiany</button>
+          <button  onclick="validationData()" class="btn btn-primary" style = " float: right; width: 200px;">Zatwierdź zmiany</button>
         </form>
       <a href="/dashboard"><button type="submit" class="btn btn-primary" style = "width: 200px;">Powrót</button></a>
-      <button class="btn btn-primary" style=" width: 200px; margin-left: 10%;"onclick="myFunction()">Usuń zadanie</button>
+      <button class="btn btn-primary" style=" width: 200px; margin-left: 10%;" onclick="myFunction()">Usuń zadanie</button>
      
     </div>
     </div>
@@ -103,4 +105,14 @@
       } else {}
       document.getElementById("demo").innerHTML = txt;
     }
+
+  function  validateForm(){
+    var startDate = document.getElementById("startdate").value;
+    var endDate = document.getElementById("enddate").value;
+    if(startDate>endDate){
+      alert("Sprawdź poprawność daty rozpoczęcia i zakończenia");
+      return false;
+        }
+   
+  }
   </script>
