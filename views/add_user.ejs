@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% include ./partials/header %>
 
 <!--Tytuł Strony START-->
@@ -73,4 +74,81 @@
 	
 	</form>
 </div>
+=======
+<% include ./partials/header %>
+
+<!--Tytuł Strony START-->
+<div class="fw-bold fs-2 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+  Dodaj Użytkownika
+</div>
+<!--Tytuł Strony KONIEC-->
+
+<!--Okruszki START-->
+<nav class = "mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/dashboard">Panel Główny</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Dodaj Użytkownika</li>
+  </ol>
+</nav>
+<!--Okruszki KONIEC-->
+
+
+<!--Karta Dodawania START-->
+<div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
+  <form class = "fs-4 fw-bold" action="/add_user" method="POST">
+		
+		<div class="form-group">
+    	<label for="name">Imię i Nazwisko</label>
+      <input
+        type="name"
+        id="name"
+        name="name"
+        class="form-control"
+        placeholder="Podaj imie i nazwisko" 
+      />
+    </div>
+		
+		<div class="form-group mt-3">
+    	<label for="comment">Adres e-mail</label>
+      <input
+        type="name"
+        id="email"
+        name="email"
+        class="form-control"
+        placeholder="Wprowadź email"
+      />
+    </div>
+		
+		<div class="form-group mt-3">
+    	<label for="comment">Haslo: </label>
+      <input
+        type="password"
+        id="comment"
+        name="password"
+        class="form-control"
+        placeholder="Wprowadź haslo"
+      />
+    </div>
+		
+		<div class ="mt-3">
+    	Awansuj na koordynatora <input type="checkbox">
+  	</div>
+		
+		<!--Przyciski START-->
+		<div class = "d-flex justify-content-between align-items-top mt-4">
+			<a href="/dashboard">
+				<button type = "button" class = "btn btn-lg btn-primary">	
+					Powrót
+				</button>
+			</a>
+		
+			<button type="submit" class="btn btn-lg btn-primary">
+				Dodaj
+			</button>
+		</div>
+		<!--Przyciski KONIEC-->
+	
+	</form>
+</div>
+>>>>>>> 6dd49ea9b988688c4950c354efc83263263ba61e
 <!--Karta Dodawania KONIEC-->

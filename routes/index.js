@@ -33,7 +33,8 @@ router.get('/loginUser', (req,res) =>
 res.render('loginUser', { user: req.user}))
 
 router.get('/delete_task/:id', ensureAuthenticated, async function (req, res){
-Tasks.deleteOne({_id: req.params.id}, function (err, TasksDetails) {
+  console.log("siema",req.params.id);
+await Tasks.deleteOne({_id: req.params.id}, function (err, TasksDetails) {
   console.log(TasksDetails);
   res.redirect('/dashboard')
 });
