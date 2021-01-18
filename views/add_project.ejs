@@ -1,52 +1,71 @@
 <% include ./partials/header %>
-<div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+
+<!--Tytuł Strony START-->
+<div class="fw-bold fs-2 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
   Dodaj Projekt
 </div>
+<!--Tytuł Strony KONIEC-->
+
+<!--Okruszki START-->
 <nav class = "mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/dashboard">Panel Głowny</a></li>
     <li class="breadcrumb-item active" aria-current="page">Dodaj Projekt</li>
   </ol>
 </nav>
-<div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto" >
-  <form class = "text-primary fs-4 fw-bold" action="/send" method="post" id="contactform">
-        <div class="form-group">
-          <label for="name">Nazwa</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Wpisz nazwę projektu"
-          />
-        </div>
-        <div class = "d-flex mt-3 justify-content-between">
-          <div style = "width: 30%;" class="form-group">
-          <label for="start-date">Data rozpoczęcia:</label>
-          <input
-            type="date"
-            id="startDate"
-            name="startDate"
-            class="form-control"
-          />
-        </div>
-        <div style = "width: 30%;" class="form-group">
-          <label for="end-date">Data zakonczenia:</label>
-          <input
-            type="date"
-            id="endDate"
-            name="endDate"
-            class="form-control"
-          />
-        </div>
+<!--Okruszki KONIEC-->
+
+<!--Okno Dodawania START-->
+<div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto " >
+  <form class = "fs-4 fw-bold" action="/send" method="post" id="contactform">
+		<div class="form-group">
+    	<label for="name">Nazwa</label>
+	    <input
+      type="name"
+			id="name"
+      name="name"
+      class="form-control"
+      placeholder="Wpisz nazwę projektu"
+      />
+    </div>
+		
+		<!--Daty-->
+		<div class = "d-flex mt-3 mb-3 justify-content-between">
+    	<div style = "width: 30%;" class="form-group">
+      	<label for="start-date">Data rozpoczęcia:</label>
+		  	<input
+        type="date"
+        id="startDate"
+        name="startDate"
+        class="form-control"
+        />
       </div>
-      <div style="margin-top: 20px;">
+
+			<div style = "width: 30%;" class="form-group">
+      	<label for="end-date">Data zakonczenia:</label>
+        <input
+        type="date"
+        id="endDate"
+        name="endDate"
+        class="form-control"
+        />
       </div>
-        <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Dodaj</button>
-      </form>
- 
-    <a href="/dashboard"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Wróć do projektu</button></a>
-   </div>
-  </div>
+		</div>
+		<!--Daty-->
+
+		<!--Przyciski START-->
+		<div class = "d-flex justify-content-between align-items-top mt-4">
+			<a href="/dashboard">
+				<button type = "button" class = "btn btn-lg btn-primary">	
+					Powrót
+				</button>
+			</a>
+	
+			<button type="submit" class="btn btn-lg btn-primary">
+				Dodaj
+			</button>
+		</div>
+		<!--Przyciski KONIEC-->
+  </form>
 </div>
-  
+<!--Okno Dodawania KONIEC-->  

@@ -37,93 +37,135 @@
       height: 200px; 
   }
 </style>
-<div class="fw-bold fs-4 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
-   <%=project %>
+
+<!--Tytuł Strony START-->
+<div class="fw-bold fs-2 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+  <%=project %>
 </div>
+<!--Tytuł Strony KONIEC-->
+
+<!--Okruszki START-->
+<nav class = "mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/dashboard">Panel Głowny</a></li>
+		<li class="breadcrumb-item active" aria-current="page"><%=project %></li>
+  </ol>
+</nav>
+<!--Okruszki KONIEC-->
+
+<!--Tabela Zadań START-->
 <div class="tab-content shadow-lg" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="row">
-          <div class="col">
-            <div>
-              <% if(tasks!=null) { %>
-                <table class="scroll" width="100%"> 
-                  <thead>
-                    <tr>
-                        <th>Nierozpoczęte</th>
-                    </tr>
-                </thead> 
-                  <% tasks.forEach(function(item){ %>
-                    <%if(item.status == "Nierozpoczęte"){%>
-                  <tr>
-                    <% var x = new Date() %>
-                    <% var y = new Date(item.endDate) %>
-                    <% if( x < y ){ %>
-                      <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
-                    <%}else{%>
-                      <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
-                    <%}%>
-                      
-                  </tr>
-                  <%}%>
-                  <% }) %>
-                  </table>
-                  <% } %>
-            </div>
-          </div>
-            <div class="col shadow-lg" style="background-color: #dce8f5;">
-              <div>
-                <% if(tasks!=null) { %>
-                  <table class="scroll" width="100%"> 
-                    <thead>
-                      <tr>
-                          <th>W trakcie</th>
-                      </tr>
-                  </thead> 
-                    
-                    <% tasks.forEach(function(item){ %>
-                      <%if(item.status == "W trakcie"){%>
-                        <tr>
-                          <% var x = new Date() %>
-                          <% var y = new Date(item.endDate) %>
-                          <% if( x < y ){ %>
-                            <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
-                          <%}else{%>
-                            <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
-                          <%}%>
-                            
-                        </tr>
-                    <%}%>
-                    <% }) %>
-                    </table>
-                    <% } %>
-              </div>
-            </div>
-              <div class="col">
-                <div>
-                  <% if(tasks!=null) { %>
-                    <table class="scroll" width="100%"> 
-                      <thead>
-                        <tr>
-                            <th>Zakończone</th>
-                        </tr>
-                    </thead> 
-                      
-                      <% tasks.forEach(function(item){ %>
-                        <%if(item.status == "Zakończone"){%>
-                      <tr>
-                          <td id=""><%= item.name%></td>
-                      </tr>
-                      <%}%>
-                      <% }) %>
-                      </table>
-                      <% } %>
-                </div>
-              </div>
+  <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
+  	<div class="row">
+    	<div class="col">
+      	<div>
+        	<% if(tasks!=null) { %>
+          <table class="scroll fs-3" width="100%"> 
+          	<thead>
+            	<tr>
+              	<th class = "fs-2">Nierozpoczęte</th>
+              </tr>
+            </thead> 
+            <% tasks.forEach(function(item){ %>
+            <%if(item.status == "Nierozpoczęte"){%>
+            <tr>
+            	<% var x = new Date() %>
+              <% var y = new Date(item.endDate) %>
+              <% if( x < y ){ %>
+              <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
+              <%}else{%>
+              <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
+              <%}%>
+            </tr>
+            <%}%>
+            <% }) %>
+          </table>
+					<% } %>
         </div>
-        <a href="/dashboard">
-          <button type="submit" class="btn btn-primary" style = "float: left; width: 200px; margin-right: 25px;">
-            Wróć do listy projektów
-          </button></a>
-        <a href="/add_task/<%=project %>"><button type="submit" class="btn btn-primary" style = " float: right; width: 200px; margin-left: 25px;">Dodaj nowe zadanie</button></a>
+      </div>
+			
+			<div class="col shadow-lg" style="background-color: #dce8f5;">
+      	<div>
+        	<% if(tasks!=null) { %>
+          <table class="scroll fs-3" width="100%"> 
+          	<thead>
+            	<tr>
+              	<th class = "fs-2">Aktywne</th>
+              </tr>
+            </thead> 
+            <% tasks.forEach(function(item){ %>
+            <%if(item.status == "W trakcie"){%>
+            <tr>
+            	<% var x = new Date() %>
+              <% var y = new Date(item.endDate) %>
+              <% if( x < y ){ %>
+              <td id=""><a href="/edit_task/<%= item._id%>" style="text-decoration: none;"><%= item.name%></a></td>
+              <%}else{%>
+              <td ><a href="/edit_task/<%= item._id%>" style="text-decoration: none; color: rgb(255, 0, 0);"><%= item.name%></a></td>
+              <%}%>
+              
+            </tr>
+            <%}%>
+            <% }) %>
+          </table>
+          <% } %>
+        </div>
+			</div>
+			
+      <div class="col">
+      	<div>
+        	<% if(tasks!=null) { %>
+          <table class="scroll fs-3" width="100%"> 
+          	<thead>
+            	<tr>
+              	<th class = "fs-2">Ukończone</th>
+              </tr>
+            </thead> 
+                      
+            <% tasks.forEach(function(item){ %>
+            <%if(item.status == "Zakończone"){%>
+            <tr>
+            	<td id=""><%= item.name%></td>
+            </tr>
+            <%}%>
+            <% }) %>
+          </table>
+          <% } %>
+        </div>
+      </div>
     </div>
+	</div>
 </div>
+<!--Tabela Zadań KONIEC-->
+
+<!--Przyciski START-->
+<div class = "d-flex justify-content-between align-items-top mt-4">
+	<a href="/dashboard">
+		<button type = "button" class = "btn btn-lg btn-primary">	
+			Powrót
+		</button>
+	</a>
+
+	<button class="btn btn-lg btn-primary" onclick="myFunction()">
+		Usuń projekt
+	</button>
+
+	<a href="/add_task/<%=project %>">
+		<button type="submit" class="btn btn-lg btn-primary">
+			Dodaj nowe zadanie
+		</button>
+	</a>
+	
+</div>
+<!--Przyciski KONIEC-->
+
+<script>
+  function myFunction() {
+    var txt;
+    var r = confirm("Czy na pewno chcesz usunąć projekt i wszystkie zadania?");
+    if (r == true) {
+      window.location.replace('/delete_project/<%=project %>');
+    } else {}
+    document.getElementById("demo").innerHTML = txt;
+  }
+</script>

@@ -1,93 +1,141 @@
 <% include ./partials/header %>
-<div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+<!--Tytuł Strony START-->
+<div class="fw-bold fs-3 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
   Edytuj Zadanie
 </div>
+<!--Tytuł Strony KONIEC-->
+
+<!--Okruszki START-->
 <nav class = "mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/dashboard">Panel Głowny</a></li>
+		<li class="breadcrumb-item"><a href="/dashboard">Panel Głowny</a></li>
+		<li class="breadcrumb-item"><a href="/projects/<%=task.project%>"><%=task.project%></a></li>
     <li class="breadcrumb-item active" aria-current="page">Edytuj Zadanie</li>
   </ol>
 </nav>
-  <div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
-    <div class = "align-items-center">
-			<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
-				<div>
-					<b>Projekt: </b> <%=task.project%>
-				</div>
+<!--Okruszki KONIEC-->
+
+<!--Karta Edytowania START-->
+<div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
+  <div class = "align-items-center">
+		<!--Nazwa Projektu START-->
+		<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
+			<div>
+				<b>Projekt: </b> <%=task.project%>
 			</div>
-
 		</div>
-
-      <form class = " fs-4 fw-bold text-primary" action="/edit_task/<%=task._id%>" method="POST">
-        <div class="form-group">
-          <label for="name">Nazwa</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            value="<%=task.name %>"
-          />
-        </div>
-        <div class="form-group">
-          <label for="name">Opis zadania:</label>
-          <input
-            type="comment"
-            id="comment"
-            name="comment"
-            class="form-control"
-            value="<%=task.comment %>" 
-          />
-        </div>
-        <div class = "d-flex mt-3 justify-content-between">
-        <div class="form-group" style = "width: 45%;">
-            <label for="worker">Pracownik:</label>
-            <select class = "form-select" name="worker" id="worker">
-               
-                    <% if(users!=null) { %>
-                        <% users.forEach(function(item){ %>
-                            <option value="<%= item.name%>"><%= item.name%></option>
-                        <% }) %>
-                        <% } %>
-               
-              </select>
-        </div>
-        <div class="form-group" style = "width: 45%;">
-          <label for="name">Priorytet</label>
-          <select class = "form-select" name="priority" id="priority">
-              <option value="Wysoki">Wysoki</option>
-              <option value="Zwykły">Zwykły</option>
-        </select>
-        </div>
-      </div>
-        <div class = "d-flex mt-3 justify-content-between">
-        <div class="form-group" style = "width:45%">
-          <label for="start-date">Data rozpoczęcia:</label>
-          <input
-            type="date"
-            id="startdate"
-            name="startdate"
-            class="form-control"
-            value="<%=task.startDate %>"
-          />
-        </div>
-        <div class="form-group" style = "width:45%">
-          <label for="end-date">Data zakonczenia:</label>
-          <input
-            type="date"
-            id="enddate"
-            name="enddate"
-            class="form-control"
-            value="<%=task.endDate %>"
-          />
-        </div>
-        </div>
-        <div style="margin-top: 20px;">
-        </div>
-          <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Zatwierdź zmiany</button>
-        </form>
-   
-      <a href="/dashboard"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Powrót</button></a>
-     </div>
+		<!--Nazwa Projektu KONIEC-->
+	</div>
+	<form class = " fs-4 fw-bold text-primary" onsubmit="return validateForm()" action="/edit_task/<%=task._id%>" method="POST">
+  	<div class="form-group">
+    	<label for="name">Nazwa</label>
+      <input
+      	type="name"
+        id="name"
+        name="name"
+        class="form-control"
+        value="<%=task.name %>"
+      />
     </div>
-  </div>
+		
+		<div class="form-group">
+    	<label for="name">Opis zadania:</label>
+      <input
+      	type="comment"
+        id="comment"
+        name="comment"
+        class="form-control"
+        value="<%=task.comment %>" 
+      />
+		</div>
+		
+		<!--Imie i Priorytet START-->
+		<div class = "d-flex mt-3 justify-content-between">
+    	<div class="form-group" style = "width: 45%;">
+      	<label for="worker">Pracownik:</label>
+        <select class = "form-select" name="worker" id="worker">
+        	<% if(users!=null) { %>
+        	<% users.forEach(function(item){ %>
+        	<option value="<%= item.name%>"><%= item.name%></option>
+        	<% }) %>
+        	<% } %>
+        </select>
+      </div>
+			
+			<div class="form-group" style = "width: 45%;">
+      	<label for="name">Priorytet</label>
+        <select class = "form-select" name="priority" id="priority">
+        	<option value="Wysoki">Wysoki</option>
+          <option value="Zwykły">Zwykły</option>
+        </select>
+      </div>
+		</div>
+		<!--Imie i Priorytet KONIEC-->
+
+		<!--Daty START-->
+		<div class = "d-flex mt-3 justify-content-between">
+			<div class="form-group" style = "width:45%">
+				<label for="start-date">Data rozpoczęcia:</label>
+				<input
+					type="date"
+					id="startdate"
+					name="startdate"
+					class="form-control"
+					value="<%=task.startDate %>"
+					onclick="validationData()"
+				/>
+			</div>
+			
+			<div class="form-group" style = "width:45%">
+				<label for="end-date">Data zakonczenia:</label>
+				<input
+					type="date"
+					id="enddate"
+					name="enddate"
+					class="form-control"
+					value="<%=task.endDate %>"
+					onclick="validationData()"
+				/>
+			</div>
+		</div>
+		<!--Daty KONIEC-->
+		
+		<!--Przyciski START-->
+		<div class = "d-flex justify-content-between align-items-top mt-4">
+			<a href="/dashboard">
+				<button type = "button" class = "btn btn-lg btn-primary">	
+					Powrót
+				</button>
+			</a>
+	
+			<button class="btn btn-lg btn-primary" onclick="myFunction()">
+				Usuń zadanie
+			</button>
+
+			<button onclick="validationData()" class="btn btn-lg btn-primary">
+				Zatwierdź
+			</button>
+		</div>
+		<!--Przyciski KONIEC-->
+	</form> 
+</div>
+
+<script>
+	function myFunction(){
+		var txt;
+		var r = confirm("Czy na pewno chcesz usunąć zadanie?");
+		if (r == true) {
+			window.location.replace('/delete_task/<%=task._id%>');
+		} else {}
+		document.getElementById("demo").innerHTML = txt;
+	}
+function validateForm(){
+	var startDate = document.getElementById("startdate").value;
+	var endDate = document.getElementById("enddate").value;
+	if(startDate>endDate){
+		alert("Sprawdź poprawność daty rozpoczęcia i zakończenia");
+		return false;
+			}
+ 
+}
+</script>

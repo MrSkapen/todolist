@@ -1,94 +1,154 @@
 <% include ./partials/headerWorker %>
 <link rel="stylesheet" href="../../images/pracownik.css">
+<!--Tytuł Strony START-->
 <div class="fw-bold fs-1 container p-3 my-3 bg-warning text-white text-center rounded-pill shadow-lg">
   Panel Pracownika
 </div>
-  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-home" aria-selected="true">Nierozpoczęte zadania</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-current" aria-selected="false">Aktywne zadania</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Ukończone zadania</a>
-    </li>
-  </ul>
-  <div class="tab-content"  id="pills-tabContent">
-	
-    <!--Zawartość Aktywne Zadania Start-->
-    <div class="shadow tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto "><!--Height to ustalenia-->
-        <% if(tasks!=null) { %>
-        <table class="table overflow-auto">
-                <tr>
-                    <th>Nazwa</th> 
-                    <th>Projekt</th>
-                    <th>Koordynator</th>
-                    <th>Priorytet</th> 
-                </tr>
-                <% tasks.forEach(function(item){ %>
-                <tr>
-                  <% if(item.worker==worker){ %>
-                        <% if(item.status == "Nierozpoczęte"){ %>
-                    <td id=""><a href="/task/<%= item._id%>"><%= item.name%></a></td>
-                    <td id=""><%= item.project%></td>
-                    <td id=""><%= item.project%></td>
-                    <td id=""><%= item.priority%></td>
-                        <% } %>
-                    <% } %>
-                </tr>
-                <% }) %>
-                </table>
-                <% } %>
-        </div>
-  </div>
+<!--Tytuł Strony KONIEC-->
+ 
+<!--Test-->
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+		<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-home" aria-selected="true">Nierozpoczęte zadania</a>
+	</li>
+  <li class="nav-item">
+  	<a class="nav-link" id="pills-tab" data-toggle="pill" href="#pills-current" role="tab" aria-controls="pills-current" aria-selected="false">Aktywne zadania</a>
+	</li>
+  <li class="nav-item">
+  	<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Ukończone zadania</a>
+	</li>
+</ul>
+
+
+<div class="tab-content"  id="pills-tabContent">
+
+	<!--Zawartość Nierozpoczęte Zadania START-->
+  <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
+		<div style = "max-height: 500px;" class = "overflow-auto shadow-lg">
+			<% if(tasks!=null) { %>
+			<table class="table table-striped text-center" id="myTable">
+				<!--Naglowek Tabeli START-->
+				<thead class = "sticky-top">
+					<tr>
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">
+							Nazwa
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+							</svg>
+						</th>
+
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">
+							Projekt
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+							</svg>
+						</th>
+								
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">
+							Koordynator
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+							</svg>
+						</th>
+						
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">
+							Priorytet
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+							</svg>
+						</th> 
+					</tr>
+				</thead>
+				<!--Naglowek Tabeli KONIEC-->
+									
+				<% tasks.forEach(function(item){ %>
+					<% if(item.worker==worker){ %>
+					<% if(item.status == "Nierozpoczęte"){ %>
+						<tr>
+							<td id=""><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/task/<%= item._id%>"><b><%= item.name%></b></a></td>
+							<td id=""><%= item.project%></td>
+							<td id=""><%= item.coordinator%></td>
+							<td id=""><%= item.priority%></td>
+						</tr>
+					
+					<% } %>
+					<% } %>
+				</tr>
+				<% }) %>
+			</table>
+			<% } %>
+		</div>
+	</div>
+	<!--Zawartość Nierozpoczęte Zadania KONIEC-->
+
+
+
+	<!--Zawartość Aktywne Zadania START-->
   <div class="shadow tab-pane fade" id="pills-current" role="tabpanel" aria-labelledby="pills-users-tab">
     <div style = "max-height: 500px;" class = "overflow-auto ">
       <% if(tasks!=null) { %>
-      <table class="table">
-            <tr>
-                <th>Nazwa</th>
-                <th>Projekt</th> 
-                <th>Priorytet</th> 
-            </tr>
-            <% tasks.forEach(function(item){ %>
-            <tr>
-              <% if(item.worker==worker){ %>
-                    <% if(item.status == "W trakcie"){ %>
-                <td id=""><a href="/task/<%= item._id%>"><%= item.name%></a></td>
-                <td id=""><%= item.project%></td>
-                <td id=""><%= item.priority%></td>
-                    <% } %>
-                <% } %>
-            </tr>
-            <% }) %>
-            </table>
-            <% } %>
+      <table class="table table-striped text-center">
+				<thead class = "sticky-top">
+					<tr>
+						<th>Nazwa</th>
+						<th>Projekt</th> 
+						<th>Koordynator</th>
+						<th>Priorytet</th> 
+					</tr>	
+				</thead>
+				
+				<% tasks.forEach(function(item){ %>
+        
+        	<% if(item.worker==worker){ %>
+					<% if(item.status == "W trakcie"){ %>
+						<tr>
+							<td id=""><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/task/<%= item._id%>"><b><%= item.name%></b></a></td>
+							<td id=""><%= item.project%></td>
+							<td id=""><%= item.coordinator%></td>
+          		<td id=""><%= item.priority%></td>
+						</tr>
+          
+          <% } %>
+          <% } %>
+				
+				<% }) %>
+      </table>
+      <% } %>
     </div>
-</div>
-<div class="shadow tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
-  <div style = "max-height: 500px;" class = "overflow-auto ">
-    <% if(tasks!=null) { %>
-    <table class="table overflow-auto">
-            <tr>
-                <th>Nazwa</th>
-                <th>Projekt</th>
-                <th>Priorytet</th> 
-            </tr>
-            <% tasks.forEach(function(item){ %>
-            <tr>
-              <% if(item.worker==worker){ %>
-                    <% if(item.status == "Zakończone"){ %>
-                <td id=""><a href="/task/<%= item._id%>"><%= item.name%></a></td>
-                <td id=""><%= item.project%></td>
-                <td id=""><%= item.priority%></td>
-                    <% } %>
-                <% } %>
-            </tr> 
-            <% }) %>
-            </table>
-            <% } %>
-    </div>
-      </div>
+	</div>
+	<!--Zawartość Tabeli Aktywne Zadania KONIEC-->
+
+
+
+	<!--Zawartość Tabeli Ukończone Zadania START-->
+	<div class="shadow tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+		<div style = "max-height: 500px;" class = "overflow-auto ">
+			<% if(tasks!=null) { %>
+			<table class="table table-striped text-center">
+				<thead class = "sticky-top">
+					<tr>
+						<th>Nazwa</th>
+						<th>Projekt</th>
+						<th>Koordynator</th>
+						<th>Priorytet</th> 
+					</tr>
+				</thead>
+				<% tasks.forEach(function(item){ %>
+				
+					<% if(item.worker==worker){ %>
+					<% if(item.status == "Zakończone"){ %>
+						<tr>
+							<td id=""><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/task/<%= item._id%>"><b><%= item.name%></b></a></td>
+							<td id=""><%= item.project%></td>
+							<td id=""><%= item.coordinator%></td>
+							<td id=""><%= item.priority%></td>
+						</tr>
+					
+					<% } %>
+					<% } %>
+				<% }) %>
+			</table>
+			<% } %>
+		</div>
+	</div>
 </div>
