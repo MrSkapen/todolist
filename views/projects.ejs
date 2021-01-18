@@ -135,7 +135,7 @@
     var txt;
     var r = confirm("Czy na pewno chcesz usunąć projekt i wszystkie zadania?");
     if (r == true) {
-      window.open('/delete_project/<%=project %>');
+      window.location.replace('/delete_project/<%=project %>');
 
     } else {}
     document.getElementById("demo").innerHTML = txt;

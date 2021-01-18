@@ -100,7 +100,7 @@
       var txt;
       var r = confirm("Czy na pewno chcesz usunąć zadanie?");
       if (r == true) {
-        window.open('/delete_task/<%=task._id%>');
+        window.location.replace('/delete_task/<%=task._id%>');
 
       } else {}
       document.getElementById("demo").innerHTML = txt;
