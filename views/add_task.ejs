@@ -1,96 +1,128 @@
 <% include ./partials/header %>
-<div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
+
+<!--Tytuł Strony START-->
+<div class="fw-bold fs-2 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
   Dodaj Zadanie
 </div>
-  <div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto">
-    <div style = "width: fit-content;" class="ms-0 d-flex justify-content-start fs-2 fw-bold container my-3   text-primary">
-      <div>
-        <%=project %>
+<!--Tytuł Strony KONIEC-->
+
+<!--Okruszki START-->
+<nav class = "mt-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/dashboard">Panel Główny</a></li>
+    <li class="breadcrumb-item"><a href="/projects/<%=project %>"><%=project %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">Dodaj Zadanie</li>
+  </ol>
+</nav>
+<!--Okruszki KONIEC-->
+
+<!--Karta Dodawania START-->
+<div style = "width: 60%" class = "p-3 mt-5 shadow-lg mx-auto fs-4 fw-bold">
+
+	<!--Nazwa Projektu START-->
+	<div style = "width: fit-content;" class="mx-auto d-flex justify-content-start fs-2 fw-bold container my-3 rounded-pill shadow bg-light border border-primary border-3 text-primary">
+		<div>
+			<b>Projekt: </b> <%=project%>
+		</div>
+	</div>
+	<!--Nazwa Projektu KONIEC-->
+
+
+	<form class = " fs-4 mt-5" action="/add_task/<%=project %>" method="POST" onsubmit="return validateForm()" >
+	
+		<!--Nazwa i Pracownik START-->
+		<div class = "d-flex mt-3 justify-content-between">
+      <div style = "width: 50%;" class="form-group ">
+        <label for="name">Nazwa</label>
+        <input
+          type="name"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="Wprowadź nazwe projektu" 
+        />
       </div>
+				
+			<div style = "width: 45%;" class="form-group ">
+      	<label for="worker">Pracownik:</label>
+        <select class = "form-select" name="worker" id="worker">
+					<% if(users!=null) { %>
+          <% users.forEach(function(item){ %>
+          <option value="<%= item.name%>"><%= item.name%></option>
+					<% }) %>
+          <% } %>
+				</select>
+      </div>
+		</div>
+		<!--Nazwa i Pracownik KONIEC-->
+		
+		<div class="form-group mt-3">
+    	<label for="name">Opis zadania:</label>
+      <input
+      	type="comment"
+        id="comment"
+        name="comment"
+        class="form-control"
+        placeholder="Wprowadź opis zadania" 
+      />
     </div>
-    <form class = " fs-4 " onsubmit="return validateForm()" action="/add_task/<%=project %>" method="POST">
-    <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class = "d-flex mt-3 justify-content-between">
-        <div style = "width: 50%;" class="form-group ">
-          <label for="name">Nazwa</label>
-          <input
-            type="name"
-            id="name"
-            name="name"
-            class="form-control"
-            placeholder="Wprowadź nazwe projektu" 
-          />
-        </div>
-          <div style = "width: 45%;" class="form-group ">
-            <label for="worker">Pracownik:</label>
-            <select class = "form-select" name="worker" id="worker">
-               
-                    <% if(users!=null) { %>
-                        <% users.forEach(function(item){ %>
-                            <option value="<%= item.name%>"><%= item.name%></option>
-                        <% }) %>
-                        <% } %>
-              </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="name">Opis zadania:</label>
-          <input
-            type="comment"
-            id="comment"
-            name="comment"
-            class="form-control"
-            placeholder="Wprowadź opis zadania" 
-          />
-        </div>
-        <div class = "d-flex mt-3 justify-content-between">
-          <div style = "width: 30%;" class="form-group ">
-            <label for="start-date">Data rozpoczęcia:</label>
-            <input
-              type="date"
-              id="startdate"
-              name="startdate"
-              class="form-control"
-            />
-          </div>
-          <div style = "width: 30%;" class="form-group ">
-            <label for="end-date">Data zakonczenia:</label>
-            <input
-              type="date"
-              id="enddate"
-              name="enddate"
-              class="form-control"
-            />
-          </div>
-            <div style = "width: 30%;" class="form-group ">
-              <label for="name">Priorytet</label>
-              <select class = "form-select" name="priority" id="priority">
+			
+		<!--Daty i Priorytet START-->
+		<div class = "d-flex mt-3 justify-content-between">
+     	<div style = "width: 30%;" class="form-group ">
+      	<label for="start-date">Data rozpoczęcia:</label>
+        <input
+        	type="date"
+          id="startdate"
+          name="startdate"
+          class="form-control"
+        />
+      </div>
+				
+			<div style = "width: 30%;" class="form-group ">
+        <label for="end-date">Data zakonczenia:</label>
+        <input
+          type="date"
+          id="enddate"
+          name="enddate"
+          class="form-control"
+        />
+      </div>
+				
+			<div style = "width: 30%;" class="form-group ">
+       	<label for="name">Priorytet</label>
+       	<select class = "form-select" name="priority" id="priority">
+					<option value="Wysoki">Wysoki</option>
+          <option value="Zwykły">Zwykły</option>
+        </select>
+      </div>
+		</div>
+			<!--Daty i Priorytet KONIEC-->
 
-                  <option value="Wysoki">Wysoki</option>
-                  <option value="Zwykły">Zwykły</option>
-                  
-            </select>
-            <br>
-            </div>
-          </div>
-          
-          <button type="submit" class="btn btn-primary" style = " float: right; width: 200px;">Dodaj</button>
-      </form>
-  </div>
-  
-    <a href="/projects/<%=project %>"><button type="submit" class="float: center; margin-right:80%; btn btn-primary" style = "width: 200px; ;">Wróć do projektu</button></a>
-   </div>
-
-    </div>
+		<!--Przyciski START-->
+		<div class = "d-flex justify-content-between align-items-top mt-4">
+			<a href="/projects/<%=project %>">
+				<button type = "button" class = "btn btn-lg btn-primary">	
+					Powrót
+				</button>
+			</a>
+		
+			<button type="submit"  class="btn btn-lg btn-primary">
+				Dodaj
+			</button>
+		</div>
+		<!--Przyciski KONIEC-->
+			
+  </form>
+</div>
+<!--Karta Dodawania KONIEC-->
 <script>
-  
-  function  validateForm(){
-    var startDate = document.getElementById("startdate").value;
-    var endDate = document.getElementById("enddate").value;
-    if(startDate>endDate){
-      alert("Sprawdź poprawność daty rozpoczęcia i zakończenia");
-      return false;
-        }
-   
-  }
+  function validateForm(){
+	var startDate = document.getElementById("startdate").value;
+	var endDate = document.getElementById("enddate").value;
+	if(startDate>endDate){
+		alert("Sprawdź poprawność daty rozpoczęcia i zakończenia");
+		return false;
+			}
+};
 </script>

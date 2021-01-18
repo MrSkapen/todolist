@@ -1,8 +1,10 @@
-
 <% include ./partials/header %>
+<!--Tytuł Strony START-->
 <div class="fw-bold fs-1 container p-3 my-3 bg-primary text-white text-center rounded-pill shadow-lg">
   Panel Główny
 </div>  
+<!--Tytuł Strony KONIEC-->
+
 <script>
   function sortTable(number) {
     var table, rows, switching, i, x, y, shouldSwitch;
@@ -28,246 +30,313 @@
     }
   }
 </script>
+
+<!--Navbar Panelu Głównego START-->
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-home" aria-selected="true">Projekty</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Użytkownicy</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-inactive_tasks" role="tab" aria-controls="pills-inactive_tasks" aria-selected="false">Nierozpoczęte zadania</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-active_tasks" role="tab" aria-controls="pills-active_tasks" aria-selected="false">Aktywne zadania</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-end_taskts" role="tab" aria-controls="pills-end_taskts" aria-selected="false">Ukończone zadania</a>
-      </li>
-  </ul>
-  <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto shadow-lg">
-        <div>
-            <% if(projects!=null) { %>
-              
-              <table class="table table-striped" id="myTable" style=" text-align: center;">
-                <thead class = "sticky-top">
-									<tr class = "text-right table-striped ">
-                    <th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                    </svg>
-                  </th><!--LiczbaZadań Jeżeli możliwa xd-->
+  <li class="nav-item">
+  	<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-projects" role="tab" aria-controls="pills-home" aria-selected="true">Projekty</a>
+  </li>
+	
+	<li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-users" role="tab" aria-controls="pills-users" aria-selected="false">Użytkownicy</a>
+  </li>
+	
+	<li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-inactive_tasks" role="tab" aria-controls="pills-inactive_tasks" aria-selected="false">Nierozpoczęte zadania</a>
+  </li>
+	
+	<li class="nav-item">
+    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-active_tasks" role="tab" aria-controls="pills-active_tasks" aria-selected="false">Aktywne zadania</a>
+  </li>
+
+	 <li class="nav-item">
+  	<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-end_taskts" role="tab" aria-controls="pills-end_taskts" aria-selected="false">Ukończone zadania</a>
+  </li>
+</ul>
+<!--Navbar Panelu Głównego KONIEC-->
+
+<!--Okna Panelu Głównego START-->
+<div class="tab-content" id="pills-tabContent">
+	
+	<!--Tabela Projekty START-->
+	<div class="tab-pane fade show active" id="pills-projects" role="tabpanel" aria-labelledby="pills-home-tab">
+  	<div style = "max-height: 500px;" class = "overflow-auto shadow-lg">
+    	<div>
+      	<% if(projects!=null) { %>
+				
+				<table class="table table-striped" id="myTable" style=" text-align: center;">
+        	<thead class = "sticky-top">
+						<tr class = " table-striped ">
+							
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">
+								Nazwa
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+              		<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+              </th>
                     
-                    <th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Koordynator
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                      </svg></th>
-                    <th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Data Rozpoczęcia
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                      </svg></th>
-                    <th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Data Zakończenia
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-                      </svg></th>
-									</tr>
-                </thead>
-                <tbody class = "text-secondary">
-                  
-                  <% projects.forEach(function(item){ %>
-                    <% if( item.coordinator == user.name){ %>
-                    <tr>
-                      <td><a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/projects/<%= item.name%>"><b><%= item.name%></b></a></td>
-                      <td><%= item.coordinator%></td>
-                      <td><%=item.startDate %></td>
-                      <% var x = new Date() %>
-                      <% var y = new Date(item.endDate) %>
-                      <% if( x < y ){ %>
-                      <td><%= item.endDate%></td>
-                      <%}else{%>
-                        <td style="color: rgb(255, 0, 0);"><%= item.endDate %></td>
-                      <%}%>
-                    </tr>
-                    <%}%>
-                <% }) %>
-              </tbody>
-                </table>
-        </div>
-                <% } %>
-        </div>
-        <br><a href="/add_project" class="btn btn-primary" style="margin-left: 90%;">Dodaj Projekt</a>
-    </div>
-    <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto ">
-        
-        <% if(tasks!=null) { %>
-          <table class="table table-striped" id="myTable" style=" text-align: center;">
-            <thead class = "">
-              <tr class = "">
-                  <th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Imie i nazwisko</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Ilość wszystkich zadań</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Ilość rozpoczętych zadań</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Ilość zakończonych zadań</th>
-              </tr>
-            </thead>
-            <tbody class = "text-secondary">
-              <% var i=0 %>
-            <% users.forEach(function(item){ %>
-              <% if(i%2==0) { %>
-                <tr>
-              <% }else{ %>
-                <tr>
-              <% } %>
-             
-                <td><%= item.name%><% i++ %></td>
-                <% var x=0 %>
-                <% tasks.forEach(function(u){ %>
-                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
-                    <%x++%>
-                  <%}%>
-                <% }) %>
-                <td><%= x %></td>
-                <% var x=0 %>
-                <% tasks.forEach(function(u){ %>
-                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
-                    <% if(new String(u.status).valueOf() == new String("W trakcie").valueOf()){%>
-                      <%x++%>
-                    <%}%>
-                  <%}%>
-                <% }) %>
-                <td><%= x %></td>
-                <% var x=0 %>
-                <% tasks.forEach(function(u){ %>
-                  <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
-                    <% if(new String(u.status).valueOf() == new String("Zakończone").valueOf()){%>
-                      <%x++%>
-                    <%}%>
-                  <%}%>
-                <% }) %>
-                <td><%= x %></td>
-              
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">
+								Koordynator
+              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                	<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+								</svg>
+							</th>
+
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">
+								Data Rozpoczęcia
+              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+			        		<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+								</svg>
+							</th>
+
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">
+								Data Zakończenia
+              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+              		<path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+								</svg>
+							</th>
+						</tr>
+          </thead>
+					
+					<tbody class = "text-secondary">        
+          	<% projects.forEach(function(item){ %>
+            <% if( item.coordinator == user.name){ %>
+            <tr>
+            	<td>
+								<a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/projects/<%= item.name%>">
+									<b><%= item.name%></b>
+								</a>
+							</td>
+							
+							<td><%= item.coordinator%></td>
+              <td><%=item.startDate %></td>
+							
+							<% var x = new Date() %>
+              <% var y = new Date(item.endDate) %>
+              <% if( x < y ){ %>
+              <td><%= item.endDate%></td>
+              <%}else{%>
+              <td style="color: rgb(255, 0, 0);"><%= item.endDate %></td>
+              <%}%>
             </tr>
+            <%}%>
             <% }) %>
           </tbody>
         </table>
+      </div>
+			<% } %>	
+		</div>
+
+		<!--Przycisk Dodaj Projekt START-->
+		<div class = "d-flex justify-content-end">
+			<a href="/add_project" class="btn btn-primary mt-4">
+				Dodaj Projekt
+			</a>
+		</div>
+		<!--Przycisk Dodaj Projekt KONIEC-->
+		
+	</div>
+	<!--Tabela Projekty KONIEC-->
+
+	<!--Tabela Użytkownicy START-->
+  <div class="tab-pane fade" id="pills-users" role="tabpanel" aria-labelledby="pills-users-tab">
+		<div style = "max-height: 500px;" class = "overflow-auto ">    
+    	<% if(tasks!=null) { %>
+      <table class="table table-striped" id="myTable" style=" text-align: center;">
+       	<thead class = "">
+         	<tr class = "">
+           	<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Imie i nazwisko</th>
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Ilość wszystkich zadań</th>
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Ilość rozpoczętych zadań</th>
+						<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Ilość zakończonych zadań</th>
+           </tr>
+         </thead>
+					
+				<tbody class = "text-secondary">
+        	<% var i=0 %>
+          <% users.forEach(function(item){ %>
+					<% if(i%2==0) { %>
+					<tr >
+          <% }else{ %>
+          <tr>
+          	<% } %>
+          	<td><%= item.name%><% i++ %></td>
+            <% var x=0 %>
+            <% tasks.forEach(function(u){ %>
+            <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+            <%x++%>
+            <%}%>
+            <% }) %>
+											
+						<td><%= x %></td>
+            <% var x=0 %>
+            <% tasks.forEach(function(u){ %>
+            <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+            <% if(new String(u.status).valueOf() == new String("W trakcie").valueOf()){%>
+            <%x++%>
+            <%}%>
+            <%}%>
+            <% }) %>
+										
+						<td><%= x %></td>
+            <% var x=0 %>
+            <% tasks.forEach(function(u){ %>
+            <% if(new String(u.worker).valueOf() == new String(item.name).valueOf()){%>
+            <% if(new String(u.status).valueOf() == new String("Zakończone").valueOf()){%>
+            <%x++%>
+            <%}%>
+            <%}%>
+            <% }) %>
+										
+						<td><%= x %></td>
+        	</tr>
+        	<% }) %>
+      	</tbody>
+    	</table>
         
-            <% } %>
-    </div>
-    <br><a href="/add_user" class="btn btn-primary" style="margin-left: 90%;">Dodaj Użytkownika</a>
+      <% } %>
+		</div>
+		
+		<!--Przycisk Dodaj Projekt START-->
+		<div class = "d-flex justify-content-end">
+			<a href="/add_user" class="btn btn-primary mt-4">
+				Dodaj Użytkownika
+			</a>
+		</div>
+		<!--Przycisk Dodaj Projekt KONIEC-->
   </div>
-    <div class="tab-pane fade" id="pills-inactive_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto ">
-        <div>
-      
-        <% if(tasks!=null) { %>
-          <table class="table table-striped" id="myTable" style=" text-align: center;">
-            <thead class = "">
-              <tr class = "">
-                  <th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
-              </tr>
-            </thead>
-            <tbody class = "text-secondary">
-              
-            <% tasks.forEach(function(item){ %>
-              <% if( item.coordinator == user.name){ %>
-                <tr>
-              <% if(item.status=="Nierozpoczęte"){ %>
-                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a><% i++ %></td>
-                <td><%= item.project%></td>
-                <td><%= item.worker%></td>
-                <td><%= item.priority%></td>
-                <td><%=item.startDate %></td>
-                <td><%=item.endDate %></td>
-                <% } %>
+	<!--Tabela Użytkownicy KONIEC-->
+
+	<!--Tabela Nieaktywne Zadania START-->
+	<div class="tab-pane fade" id="pills-inactive_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
+  	<div style = "max-height: 500px;" class = "overflow-auto ">
+    	<div>
+      	<% if(tasks!=null) { %>
+        <table class="table table-striped" id="myTable" style=" text-align: center;">
+        	<thead class = "">
+        		<tr class = "">
+        			<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
             </tr>
+          </thead>
+        	<tbody class = "text-secondary">
+        		<% tasks.forEach(function(item){ %>
+        		<% if( item.coordinator == user.name){ %>
+							
+							<% if(item.status=="Nierozpoczęte"){ %>
+								<tr>
+							<td>
+								<a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/edit_task/<%= item._id%>" >
+									<b><%= item.name%></b>
+								</a>
+								<% i++ %>
+							</td>
+          		<td><%= item.project%></td>
+          		<td><%= item.worker%></td>
+          		<td><%= item.priority%></td>
+          		<td><%=item.startDate %></td>
+          		<td><%=item.endDate %></td>
+						</tr>
+							<% } %>
+            
+            <% } %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+			<% } %>
+    </div>
+	</div>
+	<!--Tabela Nieaktywne Zadania KONIEC-->
+
+	<!--Tabela Aktywne Zadania START-->
+  <div class="tab-pane fade" id="pills-active_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
+  	<div style = "max-height: 500px;" class = "overflow-auto ">
+    	<div>
+        <% if(tasks!=null) { %>
+        <table class="table table-striped" id="myTable" style=" text-align: center;">
+        	<thead class = "sticky-top">
+          	<tr class = "">
+            	<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
+						</tr>
+          </thead>
+        	<tbody class = "text-secondary">
+          	<% var i=0 %>
+            <% tasks.forEach(function(item){ %>
+							<% if(item.status=='W trakcie' ){ %>
+								<tr>
+              		<td>
+										<a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/edit_task/<%= item._id%>">
+											<b><%= item.name%></b>
+										</a>
+										<% i++ %>
+									</td>
+              		<td><%= item.project%></td>
+              		<td><%= item.worker%></td>
+              		<td><%= item.priority%></td>
+              		<td><%=item.startDate %></td>
+									<td><%=item.endDate %></td>
+								</tr>
               <% } %>
             <% }) %>
           </tbody>
         </table>
-        </div>
-            <% } %>
+      </div>
+			<% } %>
     </div>
-    </div>
-    <div class="tab-pane fade" id="pills-active_tasks" role="tabpanel" aria-labelledby="pills-active_tasks-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto ">
-        <div>
-      
+	</div>
+	<!--Tabela Aktywne Zadania KONIEC-->
+
+	<!--Tabela Ukończone Zadania START-->
+  <div class="tab-pane fade" id="pills-end_taskts" role="tabpanel" aria-labelledby="pills-end_taskts-tab">
+  	<div style = "max-height: 500px;" class = "overflow-auto ">
+    	<div>
         <% if(tasks!=null) { %>
-          <table class="table table-striped" id="myTable" style=" text-align: center;">
-            <thead class = "sticky-top">
-              <tr class = "">
-                  <th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
-              </tr>
-            </thead>
-            <tbody class = "text-secondary">
-          
-            <% tasks.forEach(function(item){ %>
-              <% if( item.coordinator == user.name){ %>
-              <% if(item.status=='W trakcie' ){ %>
-                <tr >
-                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a></td>
-                <td><%= item.project%></td>
-                <td><%= item.worker%></td>
-                <td><%= item.priority%></td>
-                <td><%=item.startDate %></td>
-                <td><%=item.endDate %></td>
-              </tr>
-                <% } %>
-            <% } %>
+				<table class="table table-striped" id="myTable" style=" text-align: center;">
+        	<thead class = "sticky-top">
+          	<tr class = "">
+            	<th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
+							<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
+            </tr>
+          </thead>
+        	<tbody class = "text-secondary">
+          	<% var i=0 %>
+          	<% tasks.forEach(function(item){ %>
+						<% if(item.status=='Zakończone'){ %>
+								<tr>
+              <td>
+								<a style = "text-decoration: none; color: rgb(0, 19, 185);" href="/edit_task/<%= item._id%>">
+									<b><%= item.name%></b>
+								</a>
+								<% i++ %>
+							</td>
+              <td><%= item.project%></td>
+              <td><%= item.worker%></td>
+              <td><%= item.priority%></td>
+              <td><%=item.startDate %></td>
+							<td><%=item.endDate %></td>
+						</tr>
+              <% } %>
+            
             <% }) %>
           </tbody>
         </table>
-        </div>
-            <% } %>
+      </div>
+			<% } %>
     </div>
-    </div>
-    <div class="tab-pane fade" id="pills-end_taskts" role="tabpanel" aria-labelledby="pills-end_taskts-tab">
-      <div style = "max-height: 500px;" class = "overflow-auto ">
-        <div>
-      
-        <% if(tasks!=null) { %>
-          <table class="table table-striped" id="myTable" style=" text-align: center;">
-            <thead class = "sticky-top">
-              <tr class = "">
-                  <th scope="col" class = "sticky-top bg-light" onclick="sortTable(0)">Nazwa</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(1)">Projekt</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(2)">Użytkownik</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(3)">Priorytet</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(4)">Data Rozpoczęcia</th>
-									<th scope="col" class = "sticky-top bg-light" onclick="sortTable(5)">Data Zakończenia</th>
-              </tr>
-            </thead>
-            <tbody class = "text-secondary">
-              <% var i=0 %>
-            <% tasks.forEach(function(item){ %>
-              <% if( item.coordinator == user.name){ %>
-              <% if(item.status=='Zakończone'){ %>
-                <tr>
-                <td><a href="/edit_task/<%= item._id%>"><%= item.name%></a></td>
-                <td><%= item.project%></td>
-                <td><%= item.worker%></td>
-                <td><%= item.priority%></td>
-                <td><%=item.startDate %></td>
-                <td><%=item.endDate %></td>
-              </tr>
-                <% } %>
-                <% } %>
-            <% }) %>
-          </tbody>
-        </table>
-        </div>
-            <% } %>
-    </div>
-    </div>
+	</div>
+	<!--Tabela Ukończone Zadania KONIEC-->
 </div>
